@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>32 Total</title>
+</head>
+<body>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+	<script src="bower_components/datamaps/dist/datamaps.world.hires.min.js"></script>
+	<div id="container" style="position: relative; width: 1200px; height: 500px;"></div>
+	<script>
+	    var map = new Datamap({
+	    	element: document.getElementById('container'),
+	    	fills: {
+	            defaultFill: 'rgba(136,136,136,0.44)', // Any hex, color name or rgb/rgba value
+	            Visited: 'rgba(50,140,37,1.0)'
+	        },
+	        data: {
+	        	AUS: {
+	                fillKey: 'Visited',
+	                visitDate: 2013
+	            },
+	            BHS: {
+	                fillKey: 'Visited',
+	                visitDate: 2002
+	            },
+	            BLZ: {
+	                fillKey: 'Visited',
+	                visitDate: 'Summer 2003'
+	            },
+	            VGB: {
+	                fillKey: 'Visited',
+	                visitDate: 2011
+	            },
+	            CAN: {
+	                fillKey: 'Visited',
+	                visitDate: 'Janruary 2016'
+	            },
+	            CHN: {
+	                fillKey: 'Visited',
+	                visitDate: 2002
+	            },
+	            CZE: {
+	                fillKey: 'Visited',
+	                visitDate: 2015
+	            },
+	            DOM: {
+	                fillKey: 'Visited',
+	                visitDate: 1998
+	            },
+	            FRA: {
+	                fillKey: 'Visited',
+	                visitDate: 2012
+	            },
+	            DEU: {
+	                fillKey: 'Visited',
+	                visitDate: 2016
+	            },
+	            GLP: {
+	                fillKey: 'Visited',
+	                visitDate: 1998
+	            },
+	            ITA: {
+	                fillKey: 'Visited',
+	                visitDate: '2011 and 2016'
+	            },
+	            IRL: {
+	                fillKey: 'Visited',
+	                visitDate: 'February 2016'
+	            },
+	            KEN: {
+	                fillKey: 'Visited',
+	                visitDate: 2009
+	            },
+	            MYS: {
+	                fillKey: 'Visited',
+	                visitDate: 2000
+	            },
+	            MEX: {
+	                fillKey: 'Visited',
+	                visitDate: 1999
+	            },
+	            MAR: {
+	                fillKey: 'Visited',
+	                visitDate: 'March 2016'
+	            },
+	            NLD: {
+	                fillKey: 'Visited',
+	                visitDate: 'May 2016'
+	            },
+	            PER: {
+	                fillKey: 'Visited',
+	                visitDate: 2005
+	            },
+	            POL: {
+	                fillKey: 'Visited',
+	                visitDate: 'March 2016'
+	            },
+	            PRI: {
+	                fillKey: 'Visited',
+	                visitDate: 1998
+	            },
+	            SVN: {
+	                fillKey: 'Visited',
+	                visitDate: 'April 2016'
+	            },
+	            ESP: {
+	                fillKey: 'Visited',
+	                visitDate: 'February 2007'
+	            },
+	            LCA: {
+	                fillKey: 'Visited',
+	                visitDate: 1998
+	            },
+	            TWN: {
+	                fillKey: 'Visited',
+	                visitDate: 'July 2016'
+	            },
+	            TZA: {
+	                fillKey: 'Visited',
+	                visitDate: 2009
+	            },
+	            TTO: {
+	                fillKey: 'Visited',
+	                visitDate: 'November 2006'
+	            },
+	            GBR: {
+	                fillKey: 'Visited',
+	                visitDate: 'Scotland: 2008. England: 2012, 2016'
+	            },
+	            VAT: {
+	                fillKey: 'Visited',
+	                visitDate: 2011
+	            },
+	            VEN: {
+	                fillKey: 'Visited',
+	                visitDate: 'Fall 2008'
+	            },
+	            VIR: {
+	                fillKey: 'Visited',
+	                visitDate: 1998
+	            },
+	            USA: {
+	                fillKey: 'Visited',
+	                visitDate: 'Far too many times'
+	            }
+	        },
+	        geographyConfig: {
+	            popupTemplate: function(geo, data) {
+	            	if (data && data.visitDate) {
+	            		return ['<div class="hoverinfo"><strong>',
+	                        geo.properties.name,
+	                        '</strong><br>',
+	                        'Visited: ' + data.visitDate,
+	                        '</div>'].join('');
+	            	}
+	                return ['<div class="hoverinfo"><strong>',
+	                        geo.properties.name,
+	                        '<br>',
+	                        geo.properties.iso,
+	                        '</strong></div>'].join('');
+	            }
+	        }
+	    });
+	    map.legend();
+	</script>
+</body>
+</html>
