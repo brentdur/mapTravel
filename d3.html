@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>D3 World Map</title>
+    <style>
+      path {
+        stroke: white;
+        stroke-width: 0.5px;
+        fill: black;
+      }
+    </style>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v3.min.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+			function getRandomColor() {
+				  var letters = '0123456789ABCDEF';
+					  var color = '#';
+						  for (var i = 0; i < 6; i++) {
+								    color += letters[Math.floor(Math.random() * 16)];
+										  }
+							  return color;
+			}
+      var width = 1200;
+      var height = 500;
+
+      var projection = d3.geo.equirectangular()
+												.translate([width/2, height/2]);
+      
+      var svg = d3.select("body").append("svg")
+          .attr("width", width)
+          .attr("height", height);
+      var path = d3.geo.path()
+          .projection(projection);
+      var g = svg.append("g");
+      
+      d3.json("world.json", function(error, topology) {
+				console.log(error)
+					var geoData = topojson.feature(topology, topology.objects.world).features;
+					geoData = geoData.filter(function(feature) {
+						return feature.id !== 'ATA';
+					});
+
+          g.selectAll("path")
+            .data(geoData)
+          .enter()
+            .append("path")
+            .attr("d", path)
+						.style("fill", getRandomColor)
+						.style("fill", (d) => console.log(d))
+
+					var marks = [{long: -75, lat: 43},{long: -78, lat: 41},{long: -70, lat: 53}];
+					
+					g.selectAll(".mark")
+					    .data(marks)
+				   .enter()
+					    .append("image")
+					    .attr('class','mark')
+					    .attr('width', 20)
+					    .attr('height', 20)
+					    .attr("xlink:href",'http://www.stickpng.com/assets/images/5888925dbc2fc2ef3a1860ad.png')
+					    .attr("transform", function(d) {return "translate(" + projection([d.long,d.lat]) + ")";});
+					      });
+    </script>
+  </body>
+</html>
